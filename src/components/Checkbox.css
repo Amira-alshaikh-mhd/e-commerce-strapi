@@ -65,9 +65,10 @@
 }
 .flex {
     display: flex;
-justify-content: center;
+/* justify-content: center; */
 padding: 9px;
-gap: 3px;    
+gap: 3px; 
+   
 }
 
 .badge {
