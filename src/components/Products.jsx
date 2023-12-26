@@ -1,17 +1,23 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import useFetch from '../hooks/useFetch'
 import './Products.css'
+import StoreContext from "../hooks/storeContext";
+
+
 
 
 export default function Products() {
 
+  const {filter} = useContext(StoreContext)
+
     const [products, setProducts] = useState([])
-    const {data, loading, error} = useFetch("/products?populate=*")
+    const {data, loading, error} = useFetch(filter)
 
 useEffect(() =>{
   data &&  setProducts(data)
-  console.log(data)
+
 },[data])
+
 
 
   return (

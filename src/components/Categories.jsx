@@ -1,31 +1,27 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment, useContext } from 'react'
 import useFetch from '../hooks/useFetch'
-
+import Checkbox from './Checkbox'
 
 export default function Categories() {
 
   const [categories,setCategories] = useState([])
   const {data, loading, error} = useFetch("/categories?populate=*")
 
+
   useEffect(() =>{
     data &&  setCategories(data)
-    console.log(data)
+  
   },[data])
 
 
   return (
-    <div className='flex'>
+    <div className='categories'>
        {loading 
         ? "loading..."
         : categories.map(category =>(
-            <div key={category.id}>
-                <h1>{category.attributes.title}</h1>
-                <div>{category.attributes.description}</div>
-              <img src={import.meta.env.VITE_APP_URL + category.attributes.image.data.attributes.url} alt="image" />
-
-
-
-            </div>
+          <Fragment key={category.id}>
+           <Checkbox category={category} />
+           </Fragment>
         ))
 
        }
